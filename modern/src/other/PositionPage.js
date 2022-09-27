@@ -36,7 +36,7 @@ const PositionPage = () => {
 
   useEffectAsync(async () => {
     if (id) {
-      const response = await fetch(`/api/positions?id=${id}`);
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/positions?id=${id}`);
       if (response.ok) {
         const positions = await response.json();
         if (positions.length > 0) {

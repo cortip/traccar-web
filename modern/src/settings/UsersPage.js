@@ -34,7 +34,7 @@ const UsersPage = () => {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = useCatch(async (userId) => {
-    const response = await fetch(`/api/session/${userId}`);
+    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/session/${userId}`);
     if (response.ok) {
       window.location.replace('/');
     } else {
@@ -51,7 +51,7 @@ const UsersPage = () => {
   useEffectAsync(async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/users');
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/users`);
       if (response.ok) {
         setItems(await response.json());
       } else {

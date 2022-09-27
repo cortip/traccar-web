@@ -39,7 +39,7 @@ const EditItemView = ({
   useEffectAsync(async () => {
     if (!item) {
       if (id) {
-        const response = await fetch(`/api/${endpoint}/${id}`);
+        const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/${endpoint}/${id}`);
         if (response.ok) {
           setItem(await response.json());
         } else {
@@ -57,7 +57,7 @@ const EditItemView = ({
       url += `/${id}`;
     }
 
-    const response = await fetch(url, {
+    const response = await fetch((process.env.REACT_APP_URL_NAME || '') + url, {
       method: !id ? 'POST' : 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(item),

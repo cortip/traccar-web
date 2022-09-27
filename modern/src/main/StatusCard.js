@@ -117,7 +117,7 @@ const StatusCard = ({ deviceId, onClose }) => {
 
   const handleRemove = useCatch(async (removed) => {
     if (removed) {
-      const response = await fetch('/api/devices');
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/devices`);
       if (response.ok) {
         dispatch(devicesActions.refresh(await response.json()));
       } else {
@@ -132,14 +132,14 @@ const StatusCard = ({ deviceId, onClose }) => {
       name: '',
       area: `CIRCLE (${position.latitude} ${position.longitude}, 50)`,
     };
-    const response = await fetch('/api/geofences', {
+    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/geofences`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newItem),
     });
     if (response.ok) {
       const item = await response.json();
-      const permissionResponse = await fetch('/api/permissions', {
+      const permissionResponse = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/permissions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ deviceId: position.deviceId, geofenceId: item.id }),

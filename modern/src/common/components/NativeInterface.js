@@ -51,7 +51,7 @@ const NativeInterface = () => {
           },
         };
 
-        const response = await fetch(`/api/users/${user.id}`, {
+        const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/users/${user.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updatedUser),

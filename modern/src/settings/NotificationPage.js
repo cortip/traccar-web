@@ -41,7 +41,7 @@ const NotificationPage = () => {
 
   const testNotificators = useCatch(async () => {
     await Promise.all(item.notificators.split(/[, ]+/).map(async (notificator) => {
-      const response = await fetch(`/api/notifications/test/${notificator}`, {
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/notifications/test/${notificator}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(item),

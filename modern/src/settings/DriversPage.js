@@ -31,7 +31,7 @@ const DriversPage = () => {
   useEffectAsync(async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/drivers');
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/drivers`);
       if (response.ok) {
         setItems(await response.json());
       } else {

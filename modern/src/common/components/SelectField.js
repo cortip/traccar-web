@@ -20,7 +20,7 @@ const SelectField = ({
 
   useEffectAsync(async () => {
     if (endpoint) {
-      const response = await fetch(endpoint);
+      const response = await fetch((process.env.REACT_APP_URL_NAME || '') + endpoint);
       if (response.ok) {
         setItems(await response.json());
       } else {

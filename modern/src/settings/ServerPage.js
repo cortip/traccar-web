@@ -66,7 +66,7 @@ const ServerPage = () => {
   const [item, setItem] = useState({ ...original });
 
   const handleSave = useCatch(async () => {
-    const response = await fetch('/api/server', {
+    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/server`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(item),

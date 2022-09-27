@@ -33,7 +33,7 @@ const ComputedAttributesPage = () => {
   useEffectAsync(async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/attributes/computed');
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/attributes/computed`);
       if (response.ok) {
         setItems(await response.json());
       } else {

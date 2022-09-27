@@ -39,7 +39,7 @@ const RegisterPage = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleSubmit = useCatch(async () => {
-    const response = await fetch('/api/users', {
+    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),

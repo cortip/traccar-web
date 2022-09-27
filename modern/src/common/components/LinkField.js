@@ -21,7 +21,7 @@ const LinkField = ({
 
   useEffectAsync(async () => {
     if (active) {
-      const response = await fetch(endpointAll);
+      const response = await fetch((process.env.REACT_APP_URL_NAME || '') + endpointAll);
       if (response.ok) {
         setItems(await response.json());
       } else {
@@ -32,7 +32,7 @@ const LinkField = ({
 
   useEffectAsync(async () => {
     if (active) {
-      const response = await fetch(endpointLinked);
+      const response = await fetch((process.env.REACT_APP_URL_NAME || '') + endpointLinked);
       if (response.ok) {
         const data = await response.json();
         setLinked(data.map((it) => it.id));
@@ -55,14 +55,14 @@ const LinkField = ({
     if (!newValue.find((it) => it < 0)) {
       const results = [];
       newValue.filter((it) => !oldValue.includes(it)).forEach((added) => {
-        results.push(fetch('/api/permissions', {
+        results.push(fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/permissions`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(createBody(added)),
         }));
       });
       oldValue.filter((it) => !newValue.includes(it)).forEach((removed) => {
-        results.push(fetch('/api/permissions', {
+        results.push(fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/permissions`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(createBody(removed)),

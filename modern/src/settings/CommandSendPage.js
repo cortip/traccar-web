@@ -54,7 +54,7 @@ const CommandSendPage = () => {
   const handleSend = useCatch(async () => {
     let command;
     if (savedId) {
-      const response = await fetch(`/api/commands/${savedId}`);
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/commands/${savedId}`);
       if (response.ok) {
         command = await response.json();
       } else {
@@ -66,7 +66,7 @@ const CommandSendPage = () => {
 
     command.deviceId = parseInt(deviceId, 10);
 
-    const response = await fetch('/api/commands/send', {
+    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/commands/send`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(command),

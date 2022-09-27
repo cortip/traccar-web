@@ -69,7 +69,7 @@ const LoginPage = () => {
       let token = '';
       try {
         const expiration = moment().add(6, 'months').toISOString();
-        const response = await fetch('/api/session/token', {
+        const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/session/token`, {
           method: 'POST',
           body: new URLSearchParams(`expiration=${expiration}`),
         });
@@ -86,7 +86,7 @@ const LoginPage = () => {
   const handlePasswordLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('/api/session', {
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/session`, {
         method: 'POST',
         body: new URLSearchParams(`email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`),
       });
@@ -105,7 +105,7 @@ const LoginPage = () => {
   };
 
   const handleTokenLogin = useCatch(async (token) => {
-    const response = await fetch(`/api/session?token=${encodeURIComponent(token)}`);
+    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/session?token=${encodeURIComponent(token)}`);
     if (response.ok) {
       const user = await response.json();
       dispatch(sessionActions.updateUser(user));

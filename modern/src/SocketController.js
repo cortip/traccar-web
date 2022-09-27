@@ -45,11 +45,11 @@ const SocketController = () => {
     socket.onclose = async (event) => {
       dispatch(sessionActions.updateSocket(false));
       if (event.code !== logoutCode) {
-        const devicesResponse = await fetch('/api/devices');
+        const devicesResponse = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/devices`);
         if (devicesResponse.ok) {
           dispatch(devicesActions.update(await devicesResponse.json()));
         }
-        const positionsResponse = await fetch('/api/positions', {
+        const positionsResponse = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/positions`, {
           headers: { 'Content-Type': 'application/json' },
         });
         if (positionsResponse.ok) {
@@ -78,7 +78,7 @@ const SocketController = () => {
 
   useEffectAsync(async () => {
     if (authenticated) {
-      const response = await fetch('/api/devices');
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/devices`);
       if (response.ok) {
         dispatch(devicesActions.refresh(await response.json()));
       } else {
@@ -92,7 +92,7 @@ const SocketController = () => {
         }
       };
     }
-    const response = await fetch('/api/session');
+    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/session`);
     if (response.ok) {
       dispatch(sessionActions.updateUser(await response.json()));
     } else {

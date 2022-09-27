@@ -35,7 +35,7 @@ const NetworkPage = () => {
 
   useEffectAsync(async () => {
     if (positionId) {
-      const response = await fetch(`/api/positions?id=${positionId}`);
+      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/positions?id=${positionId}`);
       if (response.ok) {
         const positions = await response.json();
         if (positions.length > 0) {

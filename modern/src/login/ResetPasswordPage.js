@@ -45,12 +45,12 @@ const ResetPasswordPage = () => {
     event.preventDefault();
     let response;
     if (!token) {
-      response = await fetch('/api/password/reset', {
+      response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/password/reset`, {
         method: 'POST',
         body: new URLSearchParams(`email=${encodeURIComponent(email)}`),
       });
     } else {
-      response = await fetch('/api/password/update', {
+      response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/password/update`, {
         method: 'POST',
         body: new URLSearchParams(`token=${encodeURIComponent(token)}&password=${encodeURIComponent(password)}`),
       });

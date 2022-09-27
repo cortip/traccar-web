@@ -51,7 +51,7 @@ const LoginLayout = ({ children }) => {
         {!useMediaQuery(theme.breakpoints.down('lg')) && <LogoImage color={theme.palette.secondary.contrastText} />}
       </div>
       <Paper className={classes.paper}>
-        <form className={classes.form}>
+        <form className={classes.form} aria-data="form">
           {children}
         </form>
       </Paper>

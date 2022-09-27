@@ -35,7 +35,7 @@ const CommandsPage = () => {
   useEffectAsync(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/commands`);
+      const response = await fetch('/api/commands');
       if (response.ok) {
         setItems(await response.json());
       } else {

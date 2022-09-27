@@ -50,7 +50,7 @@ const DevicePage = () => {
 
   const handleFiles = useCatch(async (files) => {
     if (files.length > 0) {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/devices/${item.id}/image`, {
+      const response = await fetch(`/api/devices/${item.id}/image`, {
         method: 'POST',
         body: files[0],
       });

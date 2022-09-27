@@ -68,7 +68,7 @@ const UserPage = () => {
   const handleDelete = useCatch(async () => {
     if (deleteEmail === currentUser.email) {
       setDeleteFailed(false);
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/users/${currentUser.id}`, { method: 'DELETE' });
+      const response = await fetch(`/api/users/${currentUser.id}`, { method: 'DELETE' });
       if (response.ok) {
         navigate('/login');
         dispatch(sessionActions.updateUser(null));

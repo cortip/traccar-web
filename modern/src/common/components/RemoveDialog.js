@@ -22,7 +22,7 @@ const RemoveDialog = ({
   const t = useTranslation();
 
   const handleRemove = useCatch(async () => {
-    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/${endpoint}/${itemId}`, { method: 'DELETE' });
+    const response = await fetch(`/api/${endpoint}/${itemId}`, { method: 'DELETE' });
     if (response.ok) {
       onResult(true);
     } else {

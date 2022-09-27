@@ -51,7 +51,7 @@ const EventReportPage = () => {
 
   useEffectAsync(async () => {
     if (selectedItem) {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/positions?id=${selectedItem.positionId}`);
+      const response = await fetch(`/api/positions?id=${selectedItem.positionId}`);
       if (response.ok) {
         const positions = await response.json();
         if (positions.length > 0) {
@@ -66,7 +66,7 @@ const EventReportPage = () => {
   }, [selectedItem]);
 
   useEffectAsync(async () => {
-    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/notifications/types`);
+    const response = await fetch('/api/notifications/types');
     if (response.ok) {
       const types = await response.json();
       setAllEventTypes([...allEventTypes, ...types.map((it) => [it.type, prefixString('event', it.type)])]);
@@ -81,14 +81,14 @@ const EventReportPage = () => {
     if (type === 'export') {
       window.location.assign(`/api/reports/events/xlsx?${query.toString()}`);
     } else if (type === 'mail') {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/reports/events/mail?${query.toString()}`);
+      const response = await fetch(`/api/reports/events/mail?${query.toString()}`);
       if (!response.ok) {
         throw Error(await response.text());
       }
     } else {
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/reports/events?${query.toString()}`, {
+        const response = await fetch(`/api/reports/events?${query.toString()}`, {
           headers: { Accept: 'application/json' },
         });
         if (response.ok) {

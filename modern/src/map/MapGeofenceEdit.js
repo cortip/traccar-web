@@ -45,7 +45,7 @@ const MapGeofenceEdit = ({ selectedGeofenceId }) => {
   const geofences = useSelector((state) => state.geofences.items);
 
   const refreshGeofences = useCatchCallback(async () => {
-    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/geofences`);
+    const response = await fetch('/api/geofences');
     if (response.ok) {
       dispatch(geofencesActions.refresh(await response.json()));
     } else {
@@ -66,7 +66,7 @@ const MapGeofenceEdit = ({ selectedGeofenceId }) => {
       const newItem = { name: '', area: geometryToArea(feature.geometry) };
       draw.delete(feature.id);
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/geofences`, {
+        const response = await fetch('/api/geofences', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(newItem),
@@ -90,7 +90,7 @@ const MapGeofenceEdit = ({ selectedGeofenceId }) => {
     const listener = async (event) => {
       const feature = event.features[0];
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/geofences/${feature.id}`, { method: 'DELETE' });
+        const response = await fetch(`/api/geofences/${feature.id}`, { method: 'DELETE' });
         if (response.ok) {
           refreshGeofences();
         } else {
@@ -112,7 +112,7 @@ const MapGeofenceEdit = ({ selectedGeofenceId }) => {
       if (item) {
         const updatedItem = { ...item, area: geometryToArea(feature.geometry) };
         try {
-          const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/geofences/${feature.id}`, {
+          const response = await fetch(`/api/geofences/${feature.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedItem),

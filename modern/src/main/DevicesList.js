@@ -189,7 +189,7 @@ const DevicesList = ({ devices }) => {
   }, []);
 
   useEffectAsync(async () => {
-    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/devices`);
+    const response = await fetch('/api/devices');
     if (response.ok) {
       dispatch(devicesActions.refresh(await response.json()));
     } else {

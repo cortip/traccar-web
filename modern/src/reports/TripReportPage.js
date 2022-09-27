@@ -74,7 +74,7 @@ const TripReportPage = () => {
         from: selectedItem.startTime,
         to: selectedItem.endTime,
       });
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/reports/route?${query.toString()}`, {
+      const response = await fetch(`/api/reports/route?${query.toString()}`, {
         headers: {
           Accept: 'application/json',
         },
@@ -94,14 +94,14 @@ const TripReportPage = () => {
     if (type === 'export') {
       window.location.assign(`/api/reports/trips/xlsx?${query.toString()}`);
     } else if (type === 'mail') {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/reports/trips/mail?${query.toString()}`);
+      const response = await fetch(`/api/reports/trips/mail?${query.toString()}`);
       if (!response.ok) {
         throw Error(await response.text());
       }
     } else {
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/reports/trips?${query.toString()}`, {
+        const response = await fetch(`/api/reports/trips?${query.toString()}`, {
           headers: { Accept: 'application/json' },
         });
         if (response.ok) {

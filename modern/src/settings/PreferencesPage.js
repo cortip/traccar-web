@@ -77,7 +77,7 @@ const PreferencesPage = () => {
 
   const generateToken = useCatch(async () => {
     const expiration = moment(tokenExpiration, moment.HTML5_FMT.DATE).toISOString();
-    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/session/token`, {
+    const response = await fetch('/api/session/token', {
       method: 'POST',
       body: new URLSearchParams(`expiration=${expiration}`),
     });

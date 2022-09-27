@@ -36,7 +36,7 @@ const EventPage = () => {
 
   useEffectAsync(async () => {
     if (id) {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/events/${id}`);
+      const response = await fetch(`/api/events/${id}`);
       if (response.ok) {
         setEvent(await response.json());
       } else {
@@ -47,7 +47,7 @@ const EventPage = () => {
 
   useEffectAsync(async () => {
     if (event && event.positionId) {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/positions?id=${event.positionId}`);
+      const response = await fetch(`/api/positions?id=${event.positionId}`);
       if (response.ok) {
         const positions = await response.json();
         if (positions.length > 0) {

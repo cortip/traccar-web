@@ -39,7 +39,7 @@ const ChartReportPage = () => {
 
   const handleSubmit = useCatch(async ({ deviceId, from, to }) => {
     const query = new URLSearchParams({ deviceId, from, to });
-    const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/reports/route?${query.toString()}`, {
+    const response = await fetch(`/api/reports/route?${query.toString()}`, {
       headers: { Accept: 'application/json' },
     });
     if (response.ok) {

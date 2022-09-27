@@ -31,7 +31,7 @@ const CalendarsPage = () => {
   useEffectAsync(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/calendars`);
+      const response = await fetch('/api/calendars');
       if (response.ok) {
         setItems(await response.json());
       } else {

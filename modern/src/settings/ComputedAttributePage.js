@@ -56,7 +56,7 @@ const ComputedAttributePage = () => {
   const testAttribute = useCatch(async () => {
     const query = new URLSearchParams({ deviceId });
     const url = `/api/attributes/computed/test?${query.toString()}`;
-    const response = await fetch((process.env.REACT_APP_URL_NAME || '') + url, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(item),

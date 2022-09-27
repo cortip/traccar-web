@@ -51,14 +51,14 @@ const SummaryReportPage = () => {
     if (type === 'export') {
       window.location.assign(`/api/reports/summary/xlsx?${query.toString()}`);
     } else if (type === 'mail') {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/reports/summary/mail?${query.toString()}`);
+      const response = await fetch(`/api/reports/summary/mail?${query.toString()}`);
       if (!response.ok) {
         throw Error(await response.text());
       }
     } else {
       setLoading(true);
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/reports/summary?${query.toString()}`, {
+        const response = await fetch(`/api/reports/summary?${query.toString()}`, {
           headers: { Accept: 'application/json' },
         });
         if (response.ok) {

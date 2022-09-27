@@ -17,7 +17,7 @@ const PoiMap = () => {
 
   useEffectAsync(async () => {
     if (poiLayer) {
-      const file = await fetch((process.env.REACT_APP_URL_NAME || '') + poiLayer);
+      const file = await fetch(poiLayer);
       const dom = new DOMParser().parseFromString(await file.text(), 'text/xml');
       setData(kml(dom));
     }

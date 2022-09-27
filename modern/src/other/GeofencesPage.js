@@ -76,7 +76,7 @@ const GeofencesPage = () => {
       const area = `LINESTRING (${coordinates})`;
       const newItem = { name: '', area };
       try {
-        const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/geofences`, {
+        const response = await fetch('/api/geofences', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(newItem),

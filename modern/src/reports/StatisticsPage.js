@@ -39,7 +39,7 @@ const StatisticsPage = () => {
     setLoading(true);
     try {
       const query = new URLSearchParams({ from, to });
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/statistics?${query.toString()}`);
+      const response = await fetch(`/api/statistics?${query.toString()}`);
       if (response.ok) {
         setItems(await response.json());
       } else {

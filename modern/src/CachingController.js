@@ -11,7 +11,7 @@ const CachingController = () => {
 
   useEffectAsync(async () => {
     if (authenticated) {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/geofences`);
+      const response = await fetch('/api/geofences');
       if (response.ok) {
         dispatch(geofencesActions.update(await response.json()));
       } else {
@@ -22,7 +22,7 @@ const CachingController = () => {
 
   useEffectAsync(async () => {
     if (authenticated) {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/groups`);
+      const response = await fetch('/api/groups');
       if (response.ok) {
         dispatch(groupsActions.update(await response.json()));
       } else {
@@ -33,7 +33,7 @@ const CachingController = () => {
 
   useEffectAsync(async () => {
     if (authenticated) {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/drivers`);
+      const response = await fetch('/api/drivers');
       if (response.ok) {
         dispatch(driversActions.update(await response.json()));
       } else {
@@ -44,7 +44,7 @@ const CachingController = () => {
 
   useEffectAsync(async () => {
     if (authenticated) {
-      const response = await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/maintenance`);
+      const response = await fetch('/api/maintenance');
       if (response.ok) {
         dispatch(maintenancesActions.update(await response.json()));
       } else {

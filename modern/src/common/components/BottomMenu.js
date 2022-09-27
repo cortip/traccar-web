@@ -62,7 +62,7 @@ const BottomMenu = () => {
             notificationTokens: tokens.length > 1 ? tokens.filter((it) => it !== notificationToken).join(',') : undefined,
           },
         };
-        await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/users/${user.id}`, {
+        await fetch(`/api/users/${user.id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(updatedUser),
@@ -70,7 +70,7 @@ const BottomMenu = () => {
       }
     }
 
-    await fetch(`${process.env.REACT_APP_URL_NAME || ''}/api/session`, { method: 'DELETE' });
+    await fetch('/api/session', { method: 'DELETE' });
     nativePostMessage('logout');
     navigate('/login');
     dispatch(sessionActions.updateUser(null));
